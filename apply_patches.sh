@@ -3,6 +3,7 @@
 APERTURE="packages/apps/Aperture"
 COMPAT="hardware/lineage/compat"
 SYSCORE="system/core"
+FWBASE="frameworks/base"
 
 if [ -d "$APERTURE" ]; then
     cd "$APERTURE"
@@ -32,6 +33,19 @@ if [ -d "$SYSCORE" ]; then
 else
 	echo -e "\n SKIPPING PATCH FOR SYSCORE: $SYSCORE NOT FOUND"
 fi
+
+if [ -d "$FWBASE" ]; then
+	cd "$FWBASE"
+	git fetch https://github.com/AxionAOSP/android_frameworks_base
+    git cherry-pick f89e8fa592233d86ad2cabf81df245c4003587cb
+    echo "[1/2]: [BUGFIX] add perf activity anim override"
+	git cherry-pick 6909a748157404e9150586b9c0860fdb81dd54cc
+    echo "[2/2]: fixup: [BUGFIX] add perf activity anim override"
+	cd ../../
+else
+	echo -e "\n SKIPPING PATCH FOR FWBASE: $FWBASE NOT FOUND"
+fi
+
 
 echo -e "\n =================="
 echo -e "  Patches Applied!"
