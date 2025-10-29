@@ -50,6 +50,7 @@ else
 	echo -e "\n SKIPPING PATCH FOR FWBASE: $FWBASE NOT FOUND"
 fi
 
+echo "export SKIP_ABI_CHECKS=true" >> build/envsetup.sh
 
 echo -e "\n =================="
 echo -e "  Patches Applied!"
