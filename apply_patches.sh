@@ -43,6 +43,9 @@ if [ -d "$FWBASE" ]; then
 	git am 6909a74.patch
     echo "[2/2]: fixup: [BUGFIX] add perf activity anim override"
 	cd ../../
+	cd device/nothing/Aerodactyl
+	git cherry-pick feb3ae70e7787035d50a3a10d5e1c92c33537249
+	cd ../../..
 else
 	echo -e "\n SKIPPING PATCH FOR FWBASE: $FWBASE NOT FOUND"
 fi
