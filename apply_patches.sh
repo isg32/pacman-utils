@@ -36,10 +36,11 @@ fi
 
 if [ -d "$FWBASE" ]; then
 	cd "$FWBASE"
-	git fetch https://github.com/AxionAOSP/android_frameworks_base
-    git cherry-pick f89e8fa592233d86ad2cabf81df245c4003587cb
-    echo "[1/2]: [BUGFIX] add perf activity anim override"
-	git cherry-pick 6909a748157404e9150586b9c0860fdb81dd54cc
+	curl -L https://github.com/AxionAOSP/android_frameworks_base/commit/f89e8fa592233d86ad2cabf81df245c4003587cb.patch > f89e8fa.patch
+	git am f89e8fa.patch
+	echo "[1/2]: [BUGFIX] add perf activity anim override"
+	curl -L https://github.com/AxionAOSP/android_frameworks_base/commit/6909a748157404e9150586b9c0860fdb81dd54cc.patch > 6909a74.patch
+	git am 6909a74.patch
     echo "[2/2]: fixup: [BUGFIX] add perf activity anim override"
 	cd ../../
 else
